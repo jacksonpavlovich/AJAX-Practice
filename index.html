@@ -31,11 +31,16 @@
     var mRequest = new XMLHttpRequest();
     mRequest.onreadystatechange = function(){
     if(mRequest.readyState == 4 && mRequest.status == 200){
-      document.getElementById("name").innerHTML = this.responseText;
+      var nameObj = this.responseText;
+      console.log(nameObj);
+      nameObj = JSON.parse(nameObj);
+      console.log(nameObj.lastName);
+      document.getElementById("name").innerHTML = nameObj.firstName + " " + nameObj.lastName;
+      document.getElementById("info").innerHTML = "I am " + nameObj.age + " and I am a " + nameObj.role;
     }
   }
 
-    mRequest.open("GET", "name.txt", true);
+    mRequest.open("GET", "name.json", true);
     mRequest.send();
   }
   </script>
